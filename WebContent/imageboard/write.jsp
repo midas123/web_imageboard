@@ -5,7 +5,7 @@
 <%@ page import="java.io.File" %>
 <%@ page import="org.apache.commons.fileupload.FileItem" %>
 
-<%@ page import="madvirus.util.ImageUtil" %>
+<%@ page import="madvirus.ImageUtil" %>
 <%@ page import="madvirus.fileupload.FileUploadRequestWrapper" %>
 
 <%@ page import="madvirus.gallery.Theme" %>

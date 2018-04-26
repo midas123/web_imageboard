@@ -10,7 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class MakeSumnail {
+public class ImageUtil {
 	public static final int SAME = -1;
 	public static final int RATIO = 0;
 	
@@ -56,5 +56,5 @@ public class MakeSumnail {
 	Graphics2D g = destImg.createGraphics();
 	g.drawImage(srcImg, 0, 0, destWidth, destHeight, null);
 	
-	ImageIO.write(destImg, "jpg" dest);
+	ImageIO.write(destImg, "jpg", dest);
 }

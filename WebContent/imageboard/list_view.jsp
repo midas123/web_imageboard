@@ -57,8 +57,8 @@
 		startRow = (currentPage -1) * PAGE_SIZE +1;
 		endRow = currentPage * PAGE_SIZE;
 		if (endRow > count) endRow = count;
-		list = manager.selectList(whereCond, whereValue, startRow-1, endRow-1);
-			startRow-1, endRow-1;
+		list = manager.selectList(whereCond, whereValue, startRow-1, endRow-1
+			);
 	} else {
 		list = Collections.EMPTY_LIST;
 	}
@@ -158,7 +158,7 @@ function goView(id) {
 <form name="move" method="post">
 	<input type="hidden" name="id" value="">
 	<input type="hidden" name="page" value="${currentPage }">
-	<c:if test="<%=searchCondTtile %>">
+	<c:if test="<%=searchCondTitle %>">
 	<input type="hidden" name="search_cond" value="title">
 	</c:if>
 	<c:if test="<%=searchCondName %>">

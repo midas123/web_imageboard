@@ -137,7 +137,7 @@ public class FileUploadRequestWrapper extends HttpServletRequestWrapper {
 		super.setAttribute(FileUploadRequestWrapper.class.getName(), this);
 	}
 	
-	public static FileUploadRequestWrappergetFrom(HttpServletRequest request) {
+	public static FileUploadRequestWrapper getFrom(HttpServletRequest request) {
 		return (FileUploadRequestWrapper)
 				request.getAttribute(FileUploadRequestWrapper.class.getName());
 	}
