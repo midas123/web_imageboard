@@ -1,3 +1,3 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<b>테마 갤러리 - 사진을 올려주세요!</b>    
+<b>이미지 게시판 작성하기 예제</b>

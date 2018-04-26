@@ -1,12 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page errorPage = "../erorr/error_view.jsp" %>
+    
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>테마 갤러리</title>
+<style>
+A {color:blue; font-weight: bold; text-decoration: none}
+A:hover {color:blue; font-weight: bold; text-decoration: underline}
+</style>
 </head>
 <body>
-
+<table width="100%" border="1" cellpadding="2" cellspacing="0">
+<tr>
+	<td>
+		<jsp:include page="../module/top.jsp" flush="false"/>
+	</td>
+</tr>
+<tr>
+	<td>
+		<jsp:include page="${param.CONTENTPAGE }" flush="false"/>
+	</td>
+</tr>
+<tr>
+	<td>
+		<jsp:include page="../module/bottom.jsp" flush="false"/>
+	</td>					
+</tr>
+</table>
 </body>
 </html>
