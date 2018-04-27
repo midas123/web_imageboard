@@ -8,11 +8,3 @@
 	<jsp:param name="CONTENTPAGE" value="./list_view.jsp"/>
 </jsp:forward>
 
-<html>
-<head>
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>

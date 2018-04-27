@@ -50,11 +50,12 @@ public class ImageUtil {
 			double ratio = ((double)destHeight) / ((double)srcHeight);
 			destHeight = (int)((double)srcHeight*ratio);
 		}
-	}
+	
 	
 	BufferedImage destImg = new BufferedImage(destWidth, destHeight, BufferedImage.TYPE_3BYTE_BGR);
 	Graphics2D g = destImg.createGraphics();
 	g.drawImage(srcImg, 0, 0, destWidth, destHeight, null);
 	
 	ImageIO.write(destImg, "jpg", dest);
+	}
 }

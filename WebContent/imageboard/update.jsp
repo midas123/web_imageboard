@@ -15,8 +15,8 @@
 
 <%
   FileUploadRequestWrapper requestWrap = new FileUploadRequestWrapper(
-		  request, -1, -1 
-		  "C:\\itbank\\Tomcat5.5\\webapps\\Javajob\\temp");
+		  request, -1, -1, 
+		  "C:\\Users\\user1\\Desktop\\temp");
   HttpServletRequest tempRequest = request;
   request = requestWrap;
 %>
@@ -42,13 +42,13 @@
 	  		  
 	  		  // 이미지를 지정한 경로에 저장
 	  		  File imageFile = new File(
-	  				  "C:\\itbank\\Tomcat5.5\\webapps\\Javajob\\image",
+	  				  "C:\\Users\\user1\\Desktop\\image",
 	  				  image);
 	  		  // 같은 이름의 파일이름 처리
 	  		  if (imageFile.exists()) {
 	  			  for (int i = 0 ; true ; i++) {
 	  				  imageFile = new File(
-	  						  "C:\\itbank\\Tomcat5.5\\webapps\\Javajob\\image", 
+	  						  "C:\\Users\\user1\\Desktop\\image", 
 	  						  "("+i+")"+image);
 	  				  if (!imageFile.exists()) {
 	  					  image = "("+i+")"+image;
@@ -60,7 +60,7 @@
 	  		  
 	  		  // 썸네일 이미지 생성
 	  		  File destFile = new File(
-	  				  "C:\\itbank\\Tomcat5.5\\webapps\\Javajob\\image", 
+	  				  "C:\\Users\\user1\\Desktop\\image", 
 	  				  image+".small.jpg");
 	  		  ImageUtil.resize(imageFile, destFile, 50, ImageUtil.RATIO);
 	  	  }
