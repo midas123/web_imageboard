@@ -1,4 +1,3 @@
-<%@page import="java.util.Collections"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ page import="java.util.List" %>
@@ -60,7 +59,7 @@
 		list = manager.selectList(whereCond, whereValue, startRow-1, endRow-1
 			);
 	} else {
-		list = Collections.EMPTY_LIST;
+		list = java.util.Collections.EMPTY_LIST;
 	}
 %>
 <c:set var="list" value="<%=list %>"/>

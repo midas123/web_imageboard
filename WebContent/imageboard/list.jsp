@@ -5,6 +5,6 @@
 %>    
 
 <jsp:forward page="./template/template.jsp">
-	<jsp:param name="CONTENTPAGE" value="./list_view.jsp"/>
+	<jsp:param name="CONTENTPAGE" value="../list_view.jsp"/>
 </jsp:forward>
 

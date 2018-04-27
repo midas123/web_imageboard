@@ -31,7 +31,7 @@ public class ThemeManager {
 	private ThemeManager() {
 	}
 	private Connection getConnection() throws Exception{
-		return DriverManager.getConnection("jdbc:apache:commons:dbcp:/poo");
+		return DriverManager.getConnection("jdbc:apache:commons:dbcp:/pool");
 	}
 	public void insert(Theme theme) throws Exception{
 		
