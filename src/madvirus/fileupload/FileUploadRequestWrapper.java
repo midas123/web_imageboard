@@ -10,6 +10,8 @@ import org.apache.commons.fileupload.FileUploadException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.UnsupportedCharsetException;
 import java.util.Enumeration;
 import java.util.Iterator;
 
@@ -27,10 +29,15 @@ public class FileUploadRequestWrapper extends HttpServletRequestWrapper {
 	
 	public FileUploadRequestWrapper(HttpServletRequest request, int threshold, int max, String repositoryPath) throws FileUploadException {
 		super(request);
-		parsing(request, threshold, max, repositoryPath);
+		try {
+			parsing(request, threshold, max, repositoryPath);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	private void parsing(HttpServletRequest request, int threshold, int max, String repositoryPath) throws FileUploadException {
+	private void parsing(HttpServletRequest request, int threshold, int max, String repositoryPath) throws FileUploadException, UnsupportedEncodingException{
 		if(FileUpload.isMultipartContent(request)) {
 			multipart = true;
 			
@@ -52,7 +59,7 @@ public class FileUploadRequestWrapper extends HttpServletRequestWrapper {
 				String name = fileItem.getFieldName();
 				
 				if(fileItem.isFormField()) {
-					String value = fileItem.getString();
+					String value = fileItem.getString("euc-kr");
 					String[] values = (String[]) parameterMap.get(name);
 					if(values ==null) {
 						values = new String[] {value};
