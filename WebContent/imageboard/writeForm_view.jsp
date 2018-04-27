@@ -23,7 +23,7 @@ function validate(form) {
 		return false;
 	} else if (form.name.value == "") {
 		alert("이름을 입력하세요.");
-	} else if (form.["parentId"] == null && form.imageFile.value == "") {
+	} else if (form["parentId"] == null && form.imageFile.value == "") {
 		alert("이미지 파일을 선택하세요.");
 		return false;
 	} else if (form.content.value == "") {
@@ -33,7 +33,7 @@ function validate(form) {
 }
 </script>
 
-<form action="write.jsp" method="post" enctype="multipart/form-data" onSubmit="return validate(this)">
+<form action="./write.jsp" method="post" enctype="multipart/form-data" onSubmit="return validate(this)">
 <input type="hidden" name="levels" value="${theme.levels + 1 }">
 <c:if test="${! empty param.groupId }">
 <input type="hidden" name="groupId" value="${param.groupId }">
