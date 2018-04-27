@@ -33,7 +33,7 @@ function validate(form) {
 }
 </script>
 
-<form action="./write.jsp" method="post" enctype="multipart/form-data" onSubmit="return validate(this)">
+<form action="write.jsp" method="post" enctype="multipart/form-data" onSubmit="return validate(this)">
 <input type="hidden" name="levels" value="${theme.levels + 1 }">
 <c:if test="${! empty param.groupId }">
 <input type="hidden" name="groupId" value="${param.groupId }">

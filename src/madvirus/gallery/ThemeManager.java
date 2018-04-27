@@ -38,7 +38,7 @@ public class ThemeManager {
 		Connection conn = null;
 		Statement stmtGroup = null;
 		ResultSet rsGroup = null;
-		
+	
 		PreparedStatement pstmtOrder = null;
 		ResultSet rsOrder = null;
 		PreparedStatement pstmtOrderUpdate = null;
@@ -62,8 +62,7 @@ public class ThemeManager {
 				theme.setGroupId(maxGroupId);
 				theme.setOrderNo(0);
 			}else {
-				pstmtOrder = conn.prepareStatement("select max(ORDER_NO) from THEME_MASSAGE_00 "
-						+ " where PAREMT_ID = ? or THEME_MESSAGE_ID = ?");
+				pstmtOrder = conn.prepareStatement("select max(ORDER_NO) from THEME_MESSAGE_00 where PARENT_ID = ? or THEME_MESSAGE_ID = ?");
 				pstmtOrder.setInt(1, theme.getParentId());
 				pstmtOrder.setInt(2, theme.getParentId());
 				rsOrder = pstmtOrder.executeQuery();
@@ -75,16 +74,15 @@ public class ThemeManager {
 				theme.setOrderNo(maxOrder);
 			}
 			if(theme.getOrderNo() > 0) {
-				pstmtOrderUpdate = conn.prepareStatement("update THEME_MASSAGE_00 set ORDER_NO +1 "
-						+ " where GROUP_ID =? and ORDER_NO >= ?");
+				pstmtOrderUpdate = conn.prepareStatement("update THEME_MESSAGE_00 set ORDER_NO = ORDER_NO +1 where GROUP_ID =? and ORDER_NO >= ?");
 				pstmtOrderUpdate.setInt(1, theme.getGroupId());
 				pstmtOrderUpdate.setInt(2, theme.getOrderNo());
 				pstmtOrderUpdate.executeUpdate();
 			}
 			
-			theme.setId(Sequencer.nextId(conn, "THEME_MASSAGE_00"));
+			theme.setId(Sequencer.nextId(conn, "THEME_MESSAGE_00"));
 			
-			pstmtInsertMessage = conn.prepareStatement("insert int THEME_MASSAGE_00 values (?,?,?,?,?,?,?,?,?,?,?)");
+			pstmtInsertMessage = conn.prepareStatement("insert into THEME_MESSAGE_00 values (?,?,?,?,?,?,?,?,?,?,?)");
 			pstmtInsertMessage.setInt(1, theme.getId());
 			pstmtInsertMessage.setInt(2, theme.getGroupId());
 			pstmtInsertMessage.setInt(3, theme.getOrderNo());
@@ -98,9 +96,9 @@ public class ThemeManager {
 			pstmtInsertMessage.setString(11, theme.getTitle());
 			pstmtInsertMessage.executeUpdate();
 			
-			pstmtInsertContent = conn.prepareStatement("insert into THEME_CONTENT_00 value (?,?)");
+			pstmtInsertContent = conn.prepareStatement("insert into THEME_CONTENT_00 values (?,?)");
 			pstmtInsertContent.setInt(1, theme.getId());
-			pstmtInsertContent.setCharacterStream(2, new StringReader(theme.getContent()), theme.getContent().length());;
+			pstmtInsertContent.setCharacterStream(2, new StringReader(theme.getContent()), theme.getContent().length());
 			pstmtInsertContent.executeUpdate();
 			
 			conn.commit();
@@ -180,7 +178,7 @@ public class ThemeManager {
 		try {
 			conn = getConnection();
 			StringBuffer query = new StringBuffer(200);
-			query.append("select count(*) from THEME_MESSAGE_00 ");
+			query.append("select count(*) from THEME_MESSAGE_00");
 			if(whereCond != null && whereCond.size() > 0) {
 				query.append("where ");
 				for(int i=0; i<whereCond.size(); i++) {

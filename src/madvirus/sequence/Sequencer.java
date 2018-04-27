@@ -14,7 +14,7 @@ public class Sequencer {
 		PreparedStatement pstmtUpdate =  null;
 		
 		try {
-			pstmtSelect = conn.prepareStatement("select MESSAGE_ID from ID_SEUENCES_00 where TABLE_NAME = ?");
+			pstmtSelect = conn.prepareStatement("select MESSAGE_ID from ID_SEQUENCES_00 where TABLE_NAME = ?");
 			pstmtSelect.setString(1, tableName);
 			
 			rsSelect = pstmtSelect.executeQuery();
@@ -31,7 +31,7 @@ public class Sequencer {
 				
 				return id;
 			}else {
-				pstmtUpdate = conn.prepareStatement("inset into ID_SEQUENSES_00 values (?, ?)");
+				pstmtUpdate = conn.prepareStatement("insert into ID_SEQUENCES_00 values (?, ?)");
 				pstmtUpdate.setString(1, tableName);
 				pstmtUpdate.setInt(2, 1);
 				pstmtUpdate.executeUpdate();

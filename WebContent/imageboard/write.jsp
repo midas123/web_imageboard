@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=EUC-KR" %>
-<%@ page errorPage="../error/error_view.jsp" %>
+<%@ page errorPage="./error/error_view.jsp" %>
 
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="java.io.File" %>
@@ -14,7 +14,7 @@
 
 <%
   FileUploadRequestWrapper requestWrap = new FileUploadRequestWrapper(
-		  request, -1, -1, "C:\\Java\\App\\SSOL\\WebContent\\temp");
+		  request, -1, -1, "C:\\Users\\user1\\Desktop\\temp");
   HttpServletRequest tempRequest = request;
   request = requestWrap;
 %>
@@ -29,13 +29,13 @@
 	  
 	  // 이미지를 지정한 경로에 저장
 	  File imageFile = new File(
-			  "C:\\Java\\App\\SSOL\\WebContent\\image",
+			  "C:\\Users\\user1\\Desktop\\image",
 			  image);
 	  // 같은 이름의 파일이름 처리
 	  if (imageFile.exists()) {
 		  for (int i = 0 ; true ; i++) {
 			  imageFile = new File(
-					  "C:\\Java\\App\\SSOL\\WebContent\\image",
+					  "C:\\Users\\user1\\Desktop\\image",
 					  image+"_"+i);
 			  if (!imageFile.exists()) {
 				  image = image + "_" + i;
@@ -47,7 +47,7 @@
 	  
 	  // 썸네일 이미지 생성
 	  File destFile = new File(
-			  "C:\\Java\\App\\SSOL\\WebContent\\image",
+			  "C:\\Users\\user1\\Desktop\\image",
 			  image+".small.jpg");
 	  ImageUtil.resize(imageFile, destFile, 50, ImageUtil.RATIO);
   }

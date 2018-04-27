@@ -49,7 +49,10 @@ public class ImageUtil {
 		} else if (width == RATIO) {
 			double ratio = ((double)destHeight) / ((double)srcHeight);
 			destHeight = (int)((double)srcHeight*ratio);
-		}
+		} else if (height == RATIO) {
+            double ratio = ((double)destWidth) / ((double)srcWidth);
+            destHeight = (int)((double)srcHeight * ratio);
+        }
 	
 	
 	BufferedImage destImg = new BufferedImage(destWidth, destHeight, BufferedImage.TYPE_3BYTE_BGR);
