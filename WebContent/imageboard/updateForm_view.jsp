@@ -53,7 +53,7 @@ onSubmit="return validate(this)">
   <td><input type="file" name="imageFile">
   <c:if test="${!empty theme.image }">
   <br>
-  <img src="/Javajob/image/${theme.image }" width="150" border="0">
+  <img src="./image/${theme.image }" width="150" border="0">
   </c:if>
   </td>
 </tr>
@@ -65,7 +65,7 @@ onSubmit="return validate(this)">
 </tr>
 <tr>
   <td colspan="2">
-  <input type="submit" value="수정">
+  <input type="submit" value="수정완료">
   <input type="button" value="취소" onClick="javascript:history.go(-1)">
   </td>
 </tr>

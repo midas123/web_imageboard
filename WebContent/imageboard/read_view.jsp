@@ -32,7 +32,7 @@
 <tr>
   <td colspan="2" align="center">
     <a href="javascript:viewLarge('/Javajob/image/${theme.image }')">
-    <img src="/Javajob/image/${theme.image }" width="150" border="0">
+    <img src="./image/${theme.image }" width="150" border="0">
     <br>[크게보기]
     </a>
   </td>

@@ -330,7 +330,7 @@ public class ThemeManager {
 				theme.setTitle(rsMessage.getString("TITLE"));
 				
 				pstmtContent = conn.prepareStatement("select CONTENT from THEME_CONTENT_00 "
-						+ " where THEME_MASSAGE_ID =?");
+						+ " where THEME_MESSAGE_ID =?");
 				pstmtContent.setInt(1, id);
 				rsContent = pstmtContent.executeQuery();
 				if(rsContent.next()) {
