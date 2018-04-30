@@ -3,12 +3,44 @@
 <%@ page import="madvirus.gallery.Theme" %>
 <%@ page import="madvirus.gallery.ThemeManager" %>
 <%@ page import="madvirus.gallery.ThemeManagerException" %>
+<%@ page import="madvirus.CommentDataBean" %>
+<%@ page import="madvirus.CommentDBBean" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+
+
+
 <%
   String themeId = request.getParameter("id");
 
   ThemeManager manager = ThemeManager.getInstance();
   Theme theme = manager.select(Integer.parseInt(themeId));
+	
+  
+  
+  //댓글 페이징
+  int pageSize=10;
+  String cPageNum = request.getParameter("cpageNum");
+  if(cPageNum == null)
+	{
+		cPageNum = "1";
+	}
+  int cCurrentPage = Integer.parseInt(cPageNum);
+	
+	int startRow = (cCurrentPage*10)-9;
+	int endRow = cCurrentPage*pageSize;
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+  
+ 	try {
+	  CommentDBBean cdb = CommentDBBean.getInstance();
+	  ArrayList comments=cdb.getComments(theme.getId(),startRow, endRow);
+		int count=cdb.getCommentCount(theme.getId());
+ 	
+		
+  
 %>
+
+
 <c:set var="theme" value="<%= theme %>" />
 <c:if test="${empty theme }">
 존재하지 않는 테마 이미지입니다.
@@ -50,9 +82,34 @@
   <a href="javascript:goList()">[목록]</a>
   </td>
 </tr>
+<%-- <form method=post action=contentPro.jsp name="comment" onsubmit="return writeSave()">
+					<tr bgcolor=<%=value_c %> align=center>
+						<td>코멘트 작성</td>
+						<td colspan=2>
+							<textarea name=commentt rows="6" cols="40"></textarea>
+							<input type=hidden name=content_num value=<%=article.getNum() %>>
+							<input type=hidden name=p_num value=<%=pageNum%>>
+							<input type=hidden name=comment_num value=<%=count+1%>>
+						</td>
+						<td align=center>
+							작성자<br>
+							<input type=text name=commenter size=10><br>
+							비밀번호<br>
+							<input type=password name=passwd size=10><p>
+							<input type=submit value=코멘트달기>
+						</td>
+					</tr>
+					</form> --%>
+
+
+
+
+
 </table>
 </c:if>
-
+<%
+		}catch(Exception e){}
+			%> 
 <script language="JavaScript">
 function goReply() {
 	document.move.action = "writeForm.jsp";
@@ -72,6 +129,14 @@ function goList() {
 }
 function viewLarge(imgUrl) {
 	
+}
+
+function writeSave(){
+	if(document.comment.commentt.value==""){
+	  alert("작성자를 입력하십시요.");
+	  document.comment.commentt.focus();
+	  return false;
+	}
 }
 </script>
 
