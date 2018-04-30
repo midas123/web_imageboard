@@ -51,10 +51,13 @@ public class ThemeManager {
 			conn = getConnection();
 			conn.setAutoCommit(false);
 			
+			//게시글이 부모글 이라면, 다른 그룹ID를 부여한다.
 			if(theme.getParentId() == 0) {
 				stmtGroup = conn.createStatement();
 				rsGroup = stmtGroup.executeQuery("select max(GROUP_ID) from THEME_MESSAGE_00");
 				int maxGroupId = 0;
+				
+				//쿼리문으로 가져온 데이터의 값을 int타입으로 가져온다
 				if(rsGroup.next()) {
 					maxGroupId = rsGroup.getInt(1);
 				}
@@ -63,6 +66,7 @@ public class ThemeManager {
 				theme.setGroupId(maxGroupId);
 				theme.setOrderNo(0);
 			}else {
+				//부모글이 아닐 경우, 부모글 ID와 게시글ID를 기준으로 순서번호 최대값을 가져온다.
 				pstmtOrder = conn.prepareStatement("select max(ORDER_NO) from THEME_MESSAGE_00 where PARENT_ID = ? or THEME_MESSAGE_ID = ?");
 				pstmtOrder.setInt(1, theme.getParentId());
 				pstmtOrder.setInt(2, theme.getParentId());
@@ -74,6 +78,7 @@ public class ThemeManager {
 				maxOrder ++;
 				theme.setOrderNo(maxOrder);
 			}
+			//
 			if(theme.getOrderNo() > 0) {
 				pstmtOrderUpdate = conn.prepareStatement("update THEME_MESSAGE_00 set ORDER_NO = ORDER_NO +1 where GROUP_ID =? and ORDER_NO >= ?");
 				pstmtOrderUpdate.setInt(1, theme.getGroupId());
