@@ -6,12 +6,16 @@
 <%@ page import="madvirus.gallery.Theme" %>
 <%@ page import="madvirus.gallery.ThemeManager" %>
 <%@ page import="madvirus.gallery.ThemeManagerException" %>
+<%@ page import="madvirus.CommentDataBean" %>
+<%@ page import="madvirus.CommentDBBean" %>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%!
 	static int PAGE_SIZE = 5;
+	static int com_count=0;
 %>
 <%
 	String pageNum = request.getParameter("page");
@@ -61,6 +65,12 @@
 	} else {
 		list = java.util.Collections.EMPTY_LIST;
 	}
+	
+	CommentDBBean cdb = CommentDBBean.getInstance();
+
+	
+	
+	
 %>
 <c:set var="list" value="<%=list %>"/>
 <c:if test="<%= searchCondTitle || searchCondName %>">
@@ -95,15 +105,28 @@
 </c:if>
 <c:if test="${! empty list }">
 <c:forEach var="theme" items="${list }">
+<c:set var="articleId" value="${theme.id }"/>
+
+
 <tr bgcolor="#f0f0f0">
 	<td><c:if test="${! empty theme.image }">
+	
 	<%
+		//JSTL에서 사용하는 변수 가져오는 코드
 		Theme theme = (Theme)pageContext.getAttribute("theme");
+
+		com_count = cdb.getCommentCount(theme.getId());
 	%>
 	<img src="./image/${theme.image }.small.jpg" width="50">
 	</c:if></td>
+	<% 
+	if(com_count>0) { %>
+	<td><a href="javascript:goView(${theme.id })"> ${theme.title }[<%=com_count %>]</a></td>
+	<td>${theme.name }</td>
+	<%} else { %>
 	<td><a href="javascript:goView(${theme.id })"> ${theme.title }</a></td>
 	<td>${theme.name }</td>
+	<%} %>
 	<td>
 	<fmt:formatDate value="${theme.register }" pattern="yyyy-MM-dd"/>
 	</td>
