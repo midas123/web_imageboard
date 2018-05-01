@@ -53,7 +53,7 @@ onSubmit="return validate(this)">
   <td><input type="file" name="imageFile">
   <c:if test="${!empty theme.image }">
   <br>
-  <img src="/Javajob/image/${theme.image }" width="150" border="0">
+  <img src="./image/${theme.image }" width="150" border="0">
   </c:if>
   </td>
 </tr>

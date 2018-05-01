@@ -23,7 +23,7 @@ public class Sequencer {
 				int id = rsSelect.getInt(1);
 				id++;
 				
-				pstmtUpdate = conn.prepareStatement("update ID_SEQUENCES_00 set MASSAGE_ID = ? "
+				pstmtUpdate = conn.prepareStatement("update ID_SEQUENCES_00 set MESSAGE_ID = ? "
 						+ " where TABLE_NAME = ?");
 				pstmtUpdate.setInt(1, id);
 				pstmtUpdate.setString(2, tableName);

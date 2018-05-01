@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+form
+<a href="주소 입력" onClick="window.open(this.href, '', 'width=400, height=430'); return false;">하고픈 말</a>
+
+
+
 
 </body>
 </html>

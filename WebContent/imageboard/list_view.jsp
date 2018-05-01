@@ -100,7 +100,7 @@
 	<%
 		Theme theme = (Theme)pageContext.getAttribute("theme");
 	%>
-	<img src="/image/${theme.image }.small.jpg" width="50">
+	<img src="./image/${theme.image }.small.jpg" width="50">
 	</c:if></td>
 	<td><a href="javascript:goView(${theme.id })"> ${theme.title }</a></td>
 	<td>${theme.name }</td>
