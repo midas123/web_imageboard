@@ -3,8 +3,8 @@ xmlns="http://apache.org/xml/xmlns/jakarta/commons/jocl">
 
 	<object class="org.apache.commons.dbcp.DriverManagerConnectionFactory">
 		<string value="jdbc:oracle:thin:@istudy.iptime.org:7000:ORCL"/>
-		<string value="KH10"/>
-		<string value="oracle"/>
+		<string value="DB계정명"/>
+		<string value="비번"/>
 	</object>
 	
 	<object class="org.apache.commons.pool.impl.GenericObjectPool">
